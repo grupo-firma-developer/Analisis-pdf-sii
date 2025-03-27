@@ -1,0 +1,22 @@
+<div class="upload-container">
+    <input type="file" (change)="onFileSelected($event)" id="fileInput" />
+    <label for="fileInput" class="custom-file-upload">Seleccionar PDF</label>
+
+    <button class="upload-btn" (click)="uploadFile()" [disabled]="!selectedFile">
+        📤 Subir PDF
+    </button>
+
+    <div *ngIf="uploadedFile" class="file-info">
+        <p>📂 Archivo subido: <strong>{{ uploadedFile }}</strong></p>
+        <button class="process-btn" (click)="processFile()">⚙️ Procesar PDF</button>
+    </div>
+
+    <div *ngIf="excelFile" class="file-info">
+        <p>📊 Archivo generado: <strong>{{ excelFile }}</strong></p>
+        <a class="download-btn" [href]="downloadUrl" download >⬇️ Descargar Excel</a>
+    </div>
+    <div *ngIf="pdfFile" class="file-info">
+        <p> Archivo pdf generado: <strong>{{ pdfFile }}</strong> </p>
+        <button class="download-btn" download [disabled]="!excelFile" (click)="downloadPdf()">⬇️ Descargar PDF</button>
+    </div>
+</div>
